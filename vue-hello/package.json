@@ -14,8 +14,10 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "iview": "^2.7.2",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -81,10 +83,12 @@
       "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
       ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
     },
-    "setupFiles": ["<rootDir>/test/unit/setup"],
+    "setupFiles": [
+      "<rootDir>/test/unit/setup"
+    ],
     "mapCoverage": true,
     "coverageDirectory": "<rootDir>/test/unit/coverage",
-    "collectCoverageFrom" : [
+    "collectCoverageFrom": [
       "src/**/*.{js,vue}",
       "!src/main.js",
       "!src/router/index.js",
