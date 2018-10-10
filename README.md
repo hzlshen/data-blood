@@ -1,2 +1,2 @@
 # vue-demo
-vue 练手之作
+vue/cli-3.0+jsplumb
