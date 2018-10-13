@@ -105,28 +105,7 @@ export default {
 .flowchart-demo .hover {
     border: 1px dotted red;
 }
-<<<<<<< HEAD
 p{
   display: flex;
 }
-=======
-
-#flowchartWindow1 {
-    top: 34em;
-    left: 5em;
-}
-#flowchartWindow2 {
-    top: 7em;
-    left: 36em;
-}
-#flowchartWindow3 {
-    top: 27em;
-    left: 48em;
-}
-#flowchartWindow4 {
-    top: 23em;
-    left: 22em;
-}
-
->>>>>>> be352b60737531f9b5cca3e328d1593554971b30
 </style>
