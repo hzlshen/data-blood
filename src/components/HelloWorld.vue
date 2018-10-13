@@ -42,7 +42,6 @@ export default {
                     cssClass: "aLabel"
                 }]
             ],
-            
             Container:"flowchart-demo"
           });
 
