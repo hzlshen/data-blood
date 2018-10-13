@@ -2,13 +2,13 @@
   <div id="labelManage">
     <div id="main">
         <div class="flowchart-demo" id="flowchart-demo">
-            <div class="window" id="flowchartWindow1">1
+            <div class="window" id="flowchartWindow1">一
             </div>
-            <div class="window" id="flowchartWindow2">2
+            <div class="window" id="flowchartWindow2">二
             </div>
-            <div class="window" id="flowchartWindow3">3
+            <div class="window" id="flowchartWindow3">三
             </div>
-            <div class="window" id="flowchartWindow4">4
+            <div class="window" id="flowchartWindow4">四
             </div>
         </div>
     </div>
