@@ -50,7 +50,6 @@ export default {
           j.addEndpoint('flowchartWindow1',{uuid:1 , anchor: "TopCenter",  isSource:true});
           j.addEndpoint('flowchartWindow2',{uuid:2 ,anchor:'Right', isTarget:true});
           j.addEndpoint('flowchartWindow3',{anthors:'Right', isTarget:true});
-          // let line = j.connect({uuids: ["1", "2"], editable: true})
           j.connect({
             uuids:[1,2],  //根据uuid进行连接
             paintStyle: { stroke: 'red', strokeWidth: 3 },  //线的样式
