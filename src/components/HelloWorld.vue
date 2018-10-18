@@ -4,11 +4,11 @@
         <div class="flowchart-demo" id="flowchart-demo">
             <div class="window" id="flowchartWindow1">一
             </div>
-            <div class="window" id="flowchartWindow2">二
+            <div class="window" id="flowchartWindow2">第一
             </div>
-            <div class="window" id="flowchartWindow3">三
+            <div class="window" id="flowchartWindow3">第二
             </div>
-            <div class="window" id="flowchartWindow4">四
+            <div class="window" id="flowchartWindow4">第三
             </div>
         </div>
     </div>
