@@ -9,14 +9,14 @@ Vue.use(Router)
 export default new Router({
     routers: [
         {
-            path: '/hello',
-            name: 'HelloWord',
-            component: HelloWord
-        },
-        {
             path: '/',
             name: 'TabList',
             component: TabList
+        },
+        {
+            path: '/hello',
+            name: 'HelloWord',
+            component: HelloWord
         }
     ]
 })
