@@ -2,7 +2,7 @@ import { fetch } from './fetch';
 import api from './api'
 
 //查看用户
-export const lookOption = () => fetch({//lookOption是你要调用接口的名字，issuer,userId是传进来的参数
+export const getJsonAjax = () => fetch({//lookOption是你要调用接口的名字，issuer,userId是传进来的参数
   //api.ajaxData 引用url.js里面的数据
   url: api.getData,
   method: 'get',//请求方法

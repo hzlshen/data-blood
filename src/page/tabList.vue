@@ -203,6 +203,7 @@
 </template>
 
 <script>
+import { getJsonAjax } from '../axios/api'
 export default {
   name: 'feature',
   data() {
@@ -249,16 +250,23 @@ export default {
     }
   },
   created() {
-    this.featureUrl()
+    // this.featureUrl()
+    this.getLocalData()
   },
   methods: {
     // ajax 
     async featureUrl() {
       let that = this;
-      let res = (await this.$venus.get(`/v1/feature/tree.action?modelId=1`)).data;
+      
+      // let res = (await this.$venus.get(`/v1/feature/tree.action?modelId=1`)).data;
       if(res.data){
         this.featureList = res.data;
       }
+    },
+    getLocalData(){ // 请求数据
+      getJsonAjax().then(res => {
+        this.featureList = res;
+      })
     },
     // 点击侧栏
     clickList(child,index) {
