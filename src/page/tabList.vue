@@ -203,7 +203,7 @@
 </template>
 
 <script>
-import { getJsonAjax } from '../axios/api'
+import { getJsonAjax } from '../axios/api.js'
 export default {
   name: 'feature',
   data() {
@@ -266,6 +266,7 @@ export default {
     getLocalData(){ // 请求数据
       getJsonAjax().then(res => {
         this.featureList = res;
+        console.log(res)
       })
     },
     // 点击侧栏
