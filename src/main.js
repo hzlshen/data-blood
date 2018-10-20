@@ -4,7 +4,7 @@ import jsPlumb from 'jsplumb'
 import router from './router/index'
 import axios from 'axios'
 
-Vue.use(axios)
+Vue.prototype.$http = axios;
 Vue.prototype.$jsPlumb = jsPlumb.jsPlumb
 
 Vue.config.productionTip = false
