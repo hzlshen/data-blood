@@ -4,5 +4,5 @@
 
 export default {
   // 代理配置
-  api:'../json/data.json'
+  getData:'../json/data.json'
 }
