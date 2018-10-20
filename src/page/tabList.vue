@@ -265,7 +265,7 @@ export default {
     },
     getLocalData(){ // 请求数据
       getJsonAjax().then(res => {
-        this.featureList = res;
+        this.featureList = res.data;
         console.log(res)
       })
     },
@@ -313,10 +313,10 @@ export default {
     },
     // router
     previous() {
-      this.$router.push({path: '/model/config'})
+      // this.$router.push({path: '/model/config'})
     },
     goalg() {
-       this.$router.push({path: 'algorithm'})
+      //  this.$router.push({path: 'algorithm'})
     }
   }
 }
