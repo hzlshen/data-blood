@@ -1,0 +1,162 @@
+[
+  {
+    "parentNodeId": "",
+    "nodeId": "",
+    "extendsParam": null,
+    "nodeType": "node",
+    "nodeName": "user标题",
+    "level": 0,
+    "children":[
+      {
+        "parentNodeId": "",
+        "nodeId": "",
+        "extendsParam": null,
+        "nodeType": "node",
+        "nodeName": "通用标题",
+        "level": 0,
+        "children":[
+          {
+            "parentNodeId": "",
+            "nodeId": "",
+            "extendsParam": null,
+            "nodeType": "node",
+            "nodeName": "列表子标题",
+            "level": 0,
+            "children":[
+              {
+                "parentNodeId": "",
+                "nodeId": "",
+                "extendsParam": null,
+                "nodeType": "node",
+                "nodeName": "四级标题",
+                "level": 0
+              },
+              {
+                "parentNodeId": "",
+                "nodeId": "",
+                "extendsParam": null,
+                "nodeType": "node",
+                "nodeName": "四级小标题",
+                "level": 0
+              }
+            ]
+          },
+          {
+            "parentNodeId": "",
+            "nodeId": "",
+            "extendsParam": null,
+            "nodeType": "node",
+            "nodeName": "列表标题",
+            "level": 0
+          }
+        ]
+      },
+      {
+        "parentNodeId": "",
+        "nodeId": "",
+        "extendsParam": null,
+        "nodeType": "node",
+        "nodeName": "侧栏标题",
+        "level": 0,
+        "children":[
+          {
+            "parentNodeId": "",
+            "nodeId": "",
+            "extendsParam": null,
+            "nodeType": "node",
+            "nodeName": "这是子标题",
+            "level": 0
+          },
+          {
+            "parentNodeId": "",
+            "nodeId": "",
+            "extendsParam": null,
+            "nodeType": "node",
+            "nodeName": "子标题2",
+            "level": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "parentNodeId": "",
+    "nodeId": "",
+    "extendsParam": null,
+    "nodeType": "node",
+    "nodeName": "item标题",
+    "level": 0,
+    "children":[
+      {
+        "parentNodeId": "",
+        "nodeId": "",
+        "extendsParam": null,
+        "nodeType": "node",
+        "nodeName": "item通用标题",
+        "level": 0,
+        "children":[
+          {
+            "parentNodeId": "",
+            "nodeId": "",
+            "extendsParam": null,
+            "nodeType": "node",
+            "nodeName": "item列表子标题",
+            "level": 0,
+            "children":[
+              {
+                "parentNodeId": "",
+                "nodeId": "",
+                "extendsParam": null,
+                "nodeType": "node",
+                "nodeName": "item四级标题",
+                "level": 0
+              },
+              {
+                "parentNodeId": "",
+                "nodeId": "",
+                "extendsParam": null,
+                "nodeType": "node",
+                "nodeName": "item四级小标题",
+                "level": 0
+              }
+            ]
+          },
+          {
+            "parentNodeId": "",
+            "nodeId": "",
+            "extendsParam": null,
+            "nodeType": "node",
+            "nodeName": "item1列表标题",
+            "level": 0
+          }
+        ]
+      },
+      {
+        "parentNodeId": "",
+        "nodeId": "",
+        "extendsParam": null,
+        "nodeType": "node",
+        "nodeName": "item侧栏",
+        "level": 0,
+        "children":[
+          {
+            "parentNodeId": "",
+            "nodeId": "",
+            "extendsParam": null,
+            "nodeType": "node",
+            "nodeName": "item子",
+            "level": 0
+          },
+          {
+            "parentNodeId": "",
+            "nodeId": "",
+            "extendsParam": null,
+            "nodeType": "node",
+            "nodeName": "item子标题2",
+            "level": 0
+          }
+        ]
+      }
+    ]
+  }
+]
