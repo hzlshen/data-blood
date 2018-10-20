@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWord from '../components/HelloWorld'
+import TabList from '../page/tabList.vue'
 
 
 Vue.use(Router)
@@ -8,9 +9,14 @@ Vue.use(Router)
 export default new Router({
     routers: [
         {
-            path: '/',
+            path: '/hello',
             name: 'HelloWord',
             component: HelloWord
+        },
+        {
+            path: '/',
+            name: 'TabList',
+            component: TabList
         }
     ]
 })
