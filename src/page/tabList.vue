@@ -322,51 +322,53 @@ export default {
 }
 </script>
 
-<style lang="postcss">
+<style>
 .feature {
-  & .boxtop {
+}
+.boxtop {
     width: 1040px;
     height:491px;
     position: relative;
     background: #e8eaf4;
     margin: 0 auto;
-    & .posbtn {
+  }
+.posbtn {
       position: absolute;
       top: 0px;
       right: 0;
       z-index: 100;
-      & .search {
+    }
+ .search {
         width: 200px;
         padding-right: 80px;
       }
-      & .span {
+ .span {
         font-size:14px;
         color:#0486fe;
         line-height: 40px;
         height: 40px;
         padding-right: 25px;
       }
-    }
-    & .tabsBox {
+.tabsBox {
       padding: 0px 0 0 20px;
     }
-    & .boxLeft {
+ .boxLeft {
       width: 126px;
       height: 386px;
       background: #fff;
       border-radius: 4px;
       float: left;
       overflow-y: auto;
-      & .el-card__body {
+    }
+.el-card__body {
         padding: 10px 15px;
       }
-      & .text {
+ .text {
         padding: 10px 0;
         font-size: 14px;
         cursor: pointer;
       }
-    }
-    & .boxCenter{
+.boxCenter{
       background: #fff;
       border-radius: 4px;
       float: left;
@@ -374,22 +376,24 @@ export default {
       height: 386px;
       margin-left: 10px;
       overflow-y: scroll;
-      & .el-card__body {
+    }
+.el-card__body {
         padding: 10px 15px;
       }
-      & .text {
+ .text {
         padding: 10px 0;
         font-size: 14px;
         cursor: pointer;
       }
-      & .textFor {
+ .textFor {
         font-size: 14px;
         clear: both;
         width: 90%;
-        & p {
+      }
+.textFor p {
           padding-bottom: 20px;
         }
-        & .colorbtn {
+.colorbtn {
           float: left;
           margin-right:15px;
           margin-bottom: 20px;
@@ -402,7 +406,7 @@ export default {
           padding: 8px 16px;
           cursor: pointer;
         }
-        & .textbtn{
+ .textbtn{
           float: left;
           margin-right:15px;
           margin-bottom: 20px;
@@ -415,40 +419,31 @@ export default {
           padding: 8px 16px;
           cursor: pointer;
         }
-        
-      }
-    }
-    & .boxRight {
+ .boxRight {
       background: #fff;
       border-radius: 4px;
       float: left;
       width: 207px;
       height: 388px;
       margin-left: 15px;
-      & .el-card__body {
+    }
+.el-card__body {
         padding: 10px 15px;
       }
-      & .numTitle {
+.numTitle {
         font-size:12px;
         color:#434649;
         text-align:left;
-        /* width: 100%; */
         height: 30px;
-        & p{
+      }
+.numTitle p{
           float: left;
-          /* padding-right: 20px; */
           padding: 10px 15px;
         }
-        & b {
+.numTitle b {
           font-weight: normal;
           color:#1890FF;
         }
-      }
-      & 
-    }
-  }
-  & 
-}
 .rightList {
         background:#f0f2f5;
         width:197px;
@@ -500,11 +495,11 @@ export default {
 .association{
   text-align: center;
   margin-bottom: 25px;
-  & .ruleDesc {
+}
+.ruleDesc {
     display: inline-block;
     font-size:12px;
     color:#0486fe;
     margin-left:21px;
   }
-}
 </style>
