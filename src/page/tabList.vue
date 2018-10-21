@@ -444,41 +444,43 @@ export default {
           color:#1890FF;
         }
       }
-      & .rightList {
+      & 
+    }
+  }
+  & 
+}
+.rightList {
         background:#f0f2f5;
         width:197px;
         height:346px;
         margin: 0 5px;
         overflow-y: scroll;
-        & .selectList {
+      
+      }
+.selectList {
           padding:10px 0 0 12px;
           overflow: hidden;
-          & p {
+        }
+.selectList p {
             font-size:12px;
             color:#9b9b9b;
           }
-          & .selebtn {
-            margin: 10px 0 0 0;
-            font-size: 12px;
-            float: left;
-            margin-right:15px;
-            background: #1890FF;
-            color: #fff;
-            border-radius: 4px;
-            text-align: center;
-            padding: 6px 10px;
-          }
-        }
-      }
-    }
-  }
-  & .next{
-    width: 1040px;
-    text-align: right;
-    margin: 20px auto;
-  }
+.selebtn {
+  margin: 10px 0 0 0;
+  font-size: 12px;
+  float: left;
+  margin-right:15px;
+  background: #1890FF;
+  color: #fff;
+  border-radius: 4px;
+  text-align: center;
+  padding: 6px 10px;
 }
-
+.next{
+  width: 1040px;
+  text-align: right;
+  margin: 20px auto;
+}
 .el-scrollbar__wrap {
   overflow-x: hidden;
 }

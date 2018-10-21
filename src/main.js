@@ -4,6 +4,7 @@ import jsPlumb from 'jsplumb'
 import router from './router/index'
 import Elementui from 'element-ui'
 import axios from 'axios'
+import 'element-ui/lib/theme-chalk/index.css'//引入css
 
 Vue.use(Elementui)
 Vue.prototype.$http = axios;
