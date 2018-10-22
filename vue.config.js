@@ -43,18 +43,18 @@ module.exports = {
   productionSourceMap: false,
   // devServer:{type:Object} 3个属性host,port,https
   // 它支持webPack-dev-server的所有选项
-     //css配置
-  css: {
-    sourceMap:false,//css source map
-    loaderOptions: {
-     css: {
-      // 这里的选项会传递给 css-loader
-     },
-     postcss: {
-      // 这里的选项会传递给 postcss-loader
-     }  
-    }   
-  },
+//css配置
+    css: {
+        loaderOptions: {
+            postcss: {
+            plugins: [
+                require('postcss-cssnext'),
+                require('postcss-import')   
+            ]
+            }
+        }
+    },
+    
   devServer: {
       port: 8080, // 端口号
       host: 'localhost',
