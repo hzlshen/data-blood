@@ -1,17 +1,6 @@
 <template>
   <div class="feature">
     <div class="boxtop">
-      <!-- <div class="posbtn">
-          <el-input
-            class="search"
-            placeholder="请输入内容"
-            v-model="input">
-            <i slot="prefix" class="el-input__icon el-icon-search"></i>
-          </el-input>
-          <span class="span">构建新特征</span>
-          <span class="span">特征自动分析</span>
-          <el-radio style="margin-right:20px;" v-model="resource" label="线上品牌商赞助"></el-radio>
-        </div> -->
       <el-tabs class="tabsBox" v-model="activeName" @tab-click="handleClick($event)">
         <el-tab-pane v-for="list in featureList" :key="list.nodeName" :label="list.nodeName" :name="list.nodeName">
           <el-card class="boxLeft">
@@ -29,7 +18,7 @@
           </el-card>
           <div class="boxRight">
             <div class="numTitle">
-              <p>已选特征: <b>11</b> </p>
+              <p>已选特征: <b>11</b></p>
               <p>标签取交集</p>
             </div>
             <div class="rightList">
@@ -41,9 +30,7 @@
               </div>
             </div>
           </div>
-
         </el-tab-pane>
- 
         <el-tab-pane label="交叉特征" name="cross">
           <el-card class="boxLeft">
             <div class="text">
@@ -146,9 +133,9 @@
 
 <script>
 import { getJsonAjax } from '../axios/api.js'
+
 export default {
-  name: 'feature',
-  data() {
+  data () {
     return {
       activeName: 'user标题',
       input:'',
@@ -201,21 +188,13 @@ export default {
       handIndex:0
     }
   },
-  created() {
-    
-   
+  created () {
   },
-  mounted() {
+  mounted () {
     this.getLocalData()
-    // this.featureUrl()
-    // this.clickList(this.shuaData,0)
-    // console.log(this.clickList(this.shuaData,0))
-    // this.clickList('item',0)
-    // console.log(this.clickList(this.shuaData,0))
-    // console.log(this.$refs["myspan"].className)
   },
   methods: {
-    async getLocalData(){ // 请求数据
+    async getLocalData () {
       try {
         let res = await getJsonAjax()
         if (!res) {
@@ -233,8 +212,7 @@ export default {
           this.shuaData = res.data[2].children[0]
           this.clickList(res.data[2].children[0])
         }
-          this.ind = 0          
-        console.log(this.shuaData)
+        this.ind = 0          
       } catch (error) {
         console.log("错误")
       }
@@ -244,41 +222,30 @@ export default {
       console.log(child,"点击了")
       this.ind = index;
     },
-    btnclick(index,item) {
-      if(item.Active){
-        this.$set(item,'Active',false);
-        this.arrSelect.forEach((val,ind)=>{
-          if(val.nodeName === item.nodeName){
+    btnclick (index,item) {
+      if (item.Active) {
+        this.$set(item,'Active',false)
+        this.arrSelect.forEach((val,ind) => {
+          if (val.nodeName === item.nodeName) {
             this.arrSelect.splice(ind,1)
           }
         })
-      }else{
+      } else {
         this.$set(item,'Active',true)
         this.arrSelect.push({'nodeName':item.nodeName,'active':item.Active})
       }
     },
     // radio
     handleClick(e) {
-      this.handIndex = e.index;
-      console.log(this.handIndex)
+      this.handIndex = e.index
       this.getLocalData()
-      // this.getLocalData(e.index)
-      // console.log(e.index)
     },
-    // dialog
     async struClick() {
-      this.dialogVisible = true;
-      // this.featureQuery()
+      this.dialogVisible = true
     },
-    // async featureQuery() {
-    //   let res = (await this.$venus.get(`/v1/feature/tree.action?modelId=1`)).data;
-    //   console.log(res.data);
-    // },
-    // bclose
     handleClose() {
-      this.dialogVisible = false;
+      this.dialogVisible = false
     },
-    // router
     previous() {
       this.$router.push({path: '/model/config'})
     },
@@ -289,279 +256,11 @@ export default {
 }
 </script>
 
-
-<!--<template>
-  <div class="feature">
-    <div class="boxtop">
-      <div class="posbtn">
-          <el-input
-            class="search"
-            placeholder="请输入内容"
-            v-model="input">
-            <i slot="prefix" class="el-input__icon el-icon-search"></i>
-          </el-input>
-          <span class="span">构建新特征</span>
-          <span class="span">特征自动分析</span>
-          <el-radio style="margin-right:20px;" v-model="resource" label="线上品牌商赞助"></el-radio>
-        </div>
-      <el-tabs class="tabsBox" v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane v-for="list in featureList" :key="list.nodeName" :label="list.nodeName" :name="list.nodeName">
-          <el-card class="boxLeft">
-            <div v-for="(child,index) in list.children" :key="index" @click="clickList(child,index)" class="text">
-              {{child.nodeName}}
-            </div>
-          </el-card>
-          <el-card class="boxCenter">
-            <div class="textFor" v-for="grand in childList" :key="grand.nodeName">
-              <p >{{grand.nodeName}}</p>
-              <div v-for="(item,index) in grandList" :key="item.nodeName" class="colorbtn" :class="{'textbtn':item.Active}" @click="btnclick(index,item)">
-                {{item.nodeName }}
-              </div>
-            </div>
-          </el-card>
-          <div class="boxRight">
-            <div class="numTitle">
-              <p>已选特征: <b>11</b> </p>
-              <p>标签取交集</p>
-            </div>
-            <div class="rightList">
-              <div class="selectList" v-for="o in 4" :key="o">
-                <p>user特征</p>
-                <div v-for="o in 4" :key="o" class="selebtn">
-                  {{'列表内容 ' + o }}
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </el-tab-pane>
-      
-        <el-tab-pane label="交叉特征" name="cross">
-          <el-card class="boxLeft">
-            <div class="text">
-              笛卡尔积特征
-            </div>
-            <div class="text">
-              点积
-            </div>
-            <p class="strutext" @click="struClick">构造新交叉特征</p>
-          </el-card>
-          <el-card class="boxCenter">
-            <div class="textFor">
-              <p>自然属性</p>
-              <div v-for="(item,index) in jsondata" :key="index" class="colorbtn" :class="{'textbtn':item.Active}" @click="btnclick(index,item)">
-                
-                {{item.name}}
-              </div>
-            </div>
-          </el-card>
-          <div class="boxRight">
-            <div class="numTitle">
-              <p>已选特征: <b>{{arrSelect.length}}</b> </p>
-              <p>标签取交集 </p>
-            </div>
-            <div class="rightList">
-              <div class="selectList">
-                <p>自然属性</p>
-                <div v-for="(list,index) in arrSelect" :key="index" class="selebtn">
-                  {{list.name}}
-                </div>
-              </div>
-            </div>
-          </div>
-        </el-tab-pane>
-      </el-tabs>
-    </div>
-    <div class="next">
-      <el-button round @click="previous">上一步</el-button>
-      <el-button round type="primary" @click="goalg">下一步</el-button>
-    </div>
-    <el-dialog
-      title="交叉规则"
-      :visible.sync="dialogVisible"
-      width="48.5%"
-      top="18vh"
-      :before-close="handleClose">
-        <el-form ref="form" style="overflow:auto;" :model="form" :label-position="labelPosition" label-width="80px">
-          <el-form-item class="formItem" label="特征类型">
-            <el-select v-model="form.region"  size="small" placeholder="请选择活动区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item class="formItem" label="特征表">
-            <el-select v-model="form.region" size="small" placeholder="请选择活动区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item class="formItem" label="特征主键">
-            <el-select v-model="form.region" size="small" placeholder="请选择活动区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
-            </el-select>
-          </el-form-item>
-        </el-form>
-        <div class="association">
-          <el-select style="width:100px;" v-model="form.region" size="small" placeholder="请选择">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
-          </el-select>
-          <p class="ruleDesc">规则说明</p>
-        </div>
-        <el-form style="overflow:auto;" ref="form" :model="form" :label-position="labelPosition" label-width="80px">
-          <el-form-item class="formItem" label="">
-            <el-select v-model="form.region"  size="small" placeholder="请选择活动区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item class="formItem" label="">
-            <el-select v-model="form.region" size="small" placeholder="请选择活动区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item class="formItem" label="">
-            <el-select v-model="form.region" size="small" placeholder="请选择活动区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
-            </el-select>
-          </el-form-item>
-        </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="dialogVisible = false">保存</el-button>
-      </span>
-    </el-dialog>
-  </div>
-</template>
-
-<script>
-import { getJsonAjax } from '../axios/api.js'
-export default {
-  name: 'feature',
-  data() {
-    return {
-      activeName: 'user特征',
-      input:'',
-      resource:'1', // radio
-      dialogVisible:false, // dialog
-      value:null,
-      form: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
-      },
-      labelPosition: 'top',
-      jsondata:[
-          {name:'笛卡尔积1'},
-          {name:'笛卡尔积2'},
-          {name:'笛卡尔积3'},
-        {
-          name:'笛卡尔积4',
-        },
-        {
-          name:'笛卡尔积5',
-        },
-        {
-          name:'笛卡尔积6',
-        },
-        {
-          name:'笛卡尔积7',
-        },
-        
-      ],
-      featureList:[], // tab数组
-      childList:[],  // 子
-      grandList:[], // 孙子
-      arrSelect:[],
-      checkb:false
-    }
-  },
-  created() {
-    // this.featureUrl()
-    this.getLocalData()
-  },
-  methods: {
-    // ajax 
-    async featureUrl() {
-      let that = this;
-      
-      // let res = (await this.$venus.get(`/v1/feature/tree.action?modelId=1`)).data;
-      if(res.data){
-        this.featureList = res.data;
-      }
-    },
-    getLocalData(){ // 请求数据
-      getJsonAjax().then(res => {
-        this.featureList = res.data;
-        console.log(res)
-      })
-    },
-    // 点击侧栏
-    clickList(child,index) {
-      this.childList = child.children;
-      child.children.map((val)=>{
-        // console.log(val.children)
-        this.grandList = val.children;
-      console.log(val.children)
-      })
-      // console.log(this.grandList)
-    },
-    // 选中
-    btnclick(index,item) {
-      if(item.Active){
-        this.$set(item,'Active',false);
-        this.arrSelect.forEach((val,ind)=>{
-          if(val.name === item.name){
-            this.arrSelect.splice(ind,1)
-          }
-        })
-      }else{
-        this.$set(item,'Active',true);
-        this.arrSelect.push({'name':item.name,'active':item.Active})
-      }
-      // console.log(this.arrSelect)
-    },
-    // radio
-    handleClick() {
-      
-    },
-    // dialog
-    async struClick() {
-      this.dialogVisible = true;
-      // this.featureQuery()
-    },
-    // async featureQuery() {
-    //   let res = (await this.$venus.get(`/v1/feature/tree.action?modelId=1`)).data;
-    //   console.log(res.data);
-    // },
-    // bclose
-    handleClose() {
-      this.dialogVisible = false;
-    },
-    // router
-    previous() {
-      // this.$router.push({path: '/model/config'})
-    },
-    goalg() {
-      //  this.$router.push({path: 'algorithm'})
-    }
-  }
+<style scoped>
+.classColor {
+  color: #0486fe;
 }
-</script>
--->
-<style>
-.feature {
-}
- .classColor {
-        color: #0486fe;
-      }
+
 .boxtop {
     width: 1040px;
     height:491px;
