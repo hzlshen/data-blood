@@ -4,5 +4,6 @@
 
 export default {
   // 代理配置
-  getData:'https://www.easy-mock.com/mock/5ab9cc04fe62cc6badfbd34f/example/data'
+  getData:'https://www.easy-mock.com/mock/5ab9cc04fe62cc6badfbd34f/example/data',
+  selectData:'https://www.easy-mock.com/mock/5ab9cc04fe62cc6badfbd34f/example/query'
 }
