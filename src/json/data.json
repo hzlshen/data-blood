@@ -29,7 +29,8 @@
                 "extendsParam": null,
                 "nodeType": "node",
                 "nodeName": "四级标题",
-                "level": 0
+                "level": 0,
+                "mainType":"user标题"
               },
               {
                 "parentNodeId": "",
@@ -37,7 +38,8 @@
                 "extendsParam": null,
                 "nodeType": "node",
                 "nodeName": "四级小标题",
-                "level": 0
+                "level": 0,
+                "mainType":"user标题"
               }
             ]
           },
@@ -109,7 +111,8 @@
                 "extendsParam": null,
                 "nodeType": "node",
                 "nodeName": "item四级标题",
-                "level": 0
+                "level": 0,
+                "mainType":"item标题"
               },
               {
                 "parentNodeId": "",
@@ -117,7 +120,8 @@
                 "extendsParam": null,
                 "nodeType": "node",
                 "nodeName": "item四级小标题",
-                "level": 0
+                "level": 0,
+                "mainType":"item标题"
               }
             ]
           },
@@ -154,6 +158,92 @@
             "nodeType": "node",
             "nodeName": "item子标题2",
             "level": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "parentNodeId": "",
+    "nodeId": "",
+    "extendsParam": null,
+    "nodeType": "node",
+    "nodeName": "特征标题",
+    "level": 0,
+    "children":[
+      {
+        "parentNodeId": "",
+        "nodeId": "",
+        "extendsParam": null,
+        "nodeType": "node",
+        "nodeName": "item通用标题",
+        "level": 0,
+        "children":[
+          {
+            "parentNodeId": "",
+            "nodeId": "",
+            "extendsParam": null,
+            "nodeType": "node",
+            "nodeName": "item列表子标题",
+            "level": 0,
+            "mainType":"特征标题",
+            "children":[
+              {
+                "parentNodeId": "",
+                "nodeId": "",
+                "extendsParam": null,
+                "nodeType": "node",
+                "nodeName": "item四级标题",
+                "level": 0,
+                "mainType":"item标题"
+              },
+              {
+                "parentNodeId": "",
+                "nodeId": "",
+                "extendsParam": null,
+                "nodeType": "node",
+                "nodeName": "item四级小标题",
+                "level": 0,
+                "mainType":"item标题"
+              }
+            ]
+          },
+          {
+            "parentNodeId": "",
+            "nodeId": "",
+            "extendsParam": null,
+            "nodeType": "node",
+            "nodeName": "item1列表标题",
+            "level": 0,
+            "mainType":"特征标题"
+          }
+        ]
+      },
+      {
+        "parentNodeId": "",
+        "nodeId": "",
+        "extendsParam": null,
+        "nodeType": "node",
+        "nodeName": "item侧栏",
+        "level": 0,
+        "children":[
+          {
+            "parentNodeId": "",
+            "nodeId": "",
+            "extendsParam": null,
+            "nodeType": "node",
+            "nodeName": "item子",
+            "level": 0,
+            "mainType":"特征标题"
+          },
+          {
+            "parentNodeId": "",
+            "nodeId": "",
+            "extendsParam": null,
+            "nodeType": "node",
+            "nodeName": "item子标题2",
+            "level": 0,
+            "mainType":"特征标题"
           }
         ]
       }

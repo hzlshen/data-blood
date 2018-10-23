@@ -1,70 +1,70 @@
+
+
 <template>
   <div class="feature">
     <div class="boxtop">
-      <el-tabs class="tabsBox" v-model="activeName" @tab-click="handleClick($event)">
-        <el-tab-pane v-for="list in featureList" :key="list.nodeName" :label="list.nodeName" :name="list.nodeName">
+      <div class="posbtn">
+          <el-input
+            class="search"
+            placeholder="请输入内容"
+            v-model="input">
+            <i slot="prefix" class="el-input__icon el-icon-search"></i>
+          </el-input>
+          <span class="span">构建新特征</span>
+          <span class="span">特征自动分析</span>
+          <el-radio style="margin-right:20px;" v-model="resource" label="线上品牌商赞助"></el-radio>
+        </div>
+      <el-tabs class="tabsBox" v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane v-for="list in featureList1" :key="list.nodeName" :label="list.nodeName" :name="list.nodeName">
           <el-card class="boxLeft">
             <div v-for="(child,index) in list.children" :class="{classColor: index == ind}" :key="index" ref="page" @click="clickList(child,index)" class="text">
               {{child.nodeName}}
             </div>
+            <p class="strutext" v-if="handIndex == 2" @click="struClick">构造新交叉特征</p>
           </el-card>
           <el-card class="boxCenter">
-            <div class="textFor" v-for="grand in childList" :key="grand.nodeName">
-              <p  style="text-align:left">{{grand.nodeName}}</p>
-              <div v-for="(item,index) in grand.children" :key="item.nodeName" class="colorbtn" :class="{'textbtn':item.Active}" @click="btnclick(index,item)">
+            <div class="textFor" v-show="handIndex == 0 || handIndex == 1" v-for="grand in childList" :key="grand.nodeName">
+              <p >{{grand.nodeName}}</p>
+              <div v-for="(item) in grand.children" :key="item.nodeName" class="colorbtn" :class="{'textbtn':item.Active }" @click="btnclick(item)">
+                {{item.nodeName }}
+              </div>
+            </div>
+            <div class="textFor" v-show="handIndex == 2" >
+              <p ></p>
+              <div v-for="item in childList" :key="item.nodeName" class="colorbtn" :class="{'textbtn':item.Active }" @click="btnclick(item)">
                 {{item.nodeName }}
               </div>
             </div>
           </el-card>
           <div class="boxRight">
             <div class="numTitle">
-              <p>已选特征: <b>11</b></p>
+              <p>已选特征: <b>{{arrSelect.length}}</b> </p>
               <p>标签取交集</p>
             </div>
             <div class="rightList">
-              <div class="selectList" v-for="(o,index) in titleList" :key="index">
-                <p>{{o.nodeName}}</p>
-                <div v-for="(list,index) in arrSelect" :key="index" class="selebtn">
-                  {{list.nodeName}}
-                </div>
-              </div>
-            </div>
-          </div>
-        </el-tab-pane>
-        <el-tab-pane label="交叉特征" name="cross">
-          <el-card class="boxLeft">
-            <div class="text">
-              笛卡尔积特征
-            </div>
-            <div class="text">
-              点积
-            </div>
-            <p class="strutext" @click="struClick">构造新交叉特征</p>
-          </el-card>
-          <el-card class="boxCenter">
-            <div class="textFor" >
-              <p>自然属性</p>
-              <div v-for="(item,index) in jsondata" :key="index" class="colorbtn" :class="{'textbtn':item.Active}" @click="btnclick(index,item)">
-                
-                {{item.name}}
-              </div>
-            </div>
-          </el-card>
-          <div class="boxRight">
-            <div class="numTitle">
-              <p>已选特征: <b>{{arrSelect.length}}</b> </p>
-              <p>标签取交集 </p>
-            </div>
-            <div class="rightList">
               <div class="selectList">
-                <p>自然属性</p>
+                <p>{{userFea}}</p>
                 <div v-for="(list,index) in arrSelect" :key="index" class="selebtn">
+                  {{list.nodeName}}
+                </div>
+              </div>
+              <!-- <div class="selectList">
+                <p>{{itemFea}}</p>
+                <div v-for="(list,index) in itemArr" :key="index" class="selebtn">
+                  {{list.nodeName}}
+                </div>
+              </div> -->
+              <div class="selectList">
+                <p>{{chaFea}}</p>
+                <div v-for="(list,index) in itemArr" :key="index" class="selebtn">
                   {{list.nodeName}}
                 </div>
               </div>
             </div>
           </div>
+
         </el-tab-pane>
+        
       </el-tabs>
     </div>
     <div class="next">
@@ -74,51 +74,63 @@
     <el-dialog
       title="交叉规则"
       :visible.sync="dialogVisible"
-      width="48.5%"
+      width="55.5%"
       top="18vh"
       :before-close="handleClose">
-        <el-form ref="form" style="overflow:auto;" :model="form" :label-position="labelPosition" label-width="80px">
+        <el-form ref="formTop" style="overflow:auto;" :model="form" :label-position="labelPosition" label-width="80px">
           <el-form-item class="formItem" label="特征类型">
-            <el-select v-model="form.region"  size="small" placeholder="请选择活动区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
+            <el-select @change="changeNext($event)" v-model="formTop.featureType" size="small" placeholder="请选择">
+              <el-option
+                v-for="item in ruleData"
+                :key="item.key"
+                :label="item.key"
+                :value="item.key">
+              </el-option>
             </el-select>
           </el-form-item>
           <el-form-item class="formItem" label="特征表">
-            <el-select v-model="form.region" size="small" placeholder="请选择活动区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
+            <el-select v-model="formTop.feaTable" @change="changeMo($event)" size="small" placeholder="请选择">
+              <el-option
+                v-for="item in ruleNext"
+                :key="item.key"
+                :label="item.key"
+                :value="item.key">
+              </el-option>
             </el-select>
           </el-form-item>
           <el-form-item class="formItem" label="特征主键">
-            <el-select v-model="form.region" size="small" placeholder="请选择活动区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
+            <el-select v-model="formTop.feaKey" size="small" placeholder="请选择">
+              <el-option
+                v-for="item in keyData"
+                :key="item.pkId"
+                :label="item.pk"
+                :value="item.pkId">
+              </el-option>
             </el-select>
           </el-form-item>
         </el-form>
         <div class="association">
           <el-select style="width:100px;" v-model="form.region" size="small" placeholder="请选择">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
+            <el-option label="笛卡尔集" value="cartesian"></el-option>
+            <el-option label="点集" value="crossDot"></el-option>
           </el-select>
           <p class="ruleDesc">规则说明</p>
         </div>
         <el-form style="overflow:auto;" ref="form" :model="form" :label-position="labelPosition" label-width="80px">
           <el-form-item class="formItem" label="">
-            <el-select v-model="form.region"  size="small" placeholder="请选择活动区域">
+            <el-select v-model="form.region"  size="small" placeholder="请选择">
               <el-option label="区域一" value="shanghai"></el-option>
               <el-option label="区域二" value="beijing"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item class="formItem" label="">
-            <el-select v-model="form.region" size="small" placeholder="请选择活动区域">
+            <el-select v-model="form.region" size="small" placeholder="请选择">
               <el-option label="区域一" value="shanghai"></el-option>
               <el-option label="区域二" value="beijing"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item class="formItem" label="">
-            <el-select v-model="form.region" size="small" placeholder="请选择活动区域">
+            <el-select v-model="form.region" size="small" placeholder="请选择">
               <el-option label="区域一" value="shanghai"></el-option>
               <el-option label="区域二" value="beijing"></el-option>
             </el-select>
@@ -132,17 +144,23 @@
 </template>
 
 <script>
-import { getJsonAjax } from '../axios/api.js'
-
+import { getJsonAjax,getSelect } from '../axios/api.js'
 export default {
-  data () {
+  name: 'feature',
+  data() {
     return {
       activeName: 'user标题',
       input:'',
       resource:'1', // radio
       dialogVisible:false, // dialog
       value:null,
+      formTop:{
+        featureType:'',
+        feaTable:'',
+        feaKey:''
+      },
       form: {
+          featureType:'',
           name: '',
           region: '',
           date1: '',
@@ -153,45 +171,39 @@ export default {
           desc: ''
       },
       labelPosition: 'top',
-      jsondata:[
-          {name:'笛卡尔积1'},
-          {name:'笛卡尔积2'},
-          {name:'笛卡尔积3'},
-        {
-          name:'笛卡尔积4',
-        },
-        {
-          name:'笛卡尔积5',
-        },
-        {
-          name:'笛卡尔积6',
-        },
-        {
-          name:'笛卡尔积7',
-        },
-        
-      ],
       featureList:[], // tab数组
+      featureList1:[],
       childList:[],  // 子
       grandList:[], // 子
       arrSelect:[], // 点击子
+      itemArr:[], // item 子
       titleList:[
-        {"nodeName":'user特征'}
-      ], // title
-      checkb:false,
+        {
+          "nodeName":'user特征'
+        }
+      ], 
       setObj:{
         data:[],
         nodeName:""
       },
       ind:0,
       shuaData:[],
-      handIndex:0
+      handIndex:0,
+      userFea:'',
+      itemFea:'',
+      chaFea:'',
+      // hasError:true
+      // dialog
+      ruleData:[],
+      ruleNext:[],
+      keyData:[]
     }
   },
-  created () {
+  created() {
+    // this.featureUrl()
+    this.getLocalData()
   },
   mounted () {
-    this.getLocalData()
   },
   methods: {
     async getLocalData () {
@@ -201,51 +213,127 @@ export default {
           return
         }
 
-        this.featureList = res.data
-        if(this.handIndex == '0'){
-          this.shuaData = res.data[0].children[0]
-          this.clickList(res.data[0].children[0])
-        }else if(this.handIndex == '1'){
-          this.shuaData = res.data[1].children[0]
-          this.clickList(res.data[1].children[0])
-        }else if (this.handIndex == '2'){
-          this.shuaData = res.data[2].children[0]
-          this.clickList(res.data[2].children[0])
-        }
-        this.ind = 0          
+        this.featureList1 = res.data;
+        this.featureList = res
+        this.init(res)
       } catch (error) {
         console.log("错误")
       }
     },
+    init (res) {
+      if(this.handIndex == '0'){
+        this.shuaData = res.data[0].children[0]
+        this.clickList(res.data[0].children[0])
+      }else if(this.handIndex == '1'){
+        this.shuaData = res.data[1].children[0]
+        this.clickList(res.data[1].children[0])
+      }else if (this.handIndex == '2'){
+        this.shuaData = res.data[2].children[0]
+        this.clickList(res.data[2].children[0])
+      }
+      this.ind = 0
+    },
+    // 点击侧栏
     clickList(child,index) {
       this.childList = child.children;
-      console.log(child,"点击了")
       this.ind = index;
     },
-    btnclick (index,item) {
-      if (item.Active) {
-        this.$set(item,'Active',false)
-        this.arrSelect.forEach((val,ind) => {
-          if (val.nodeName === item.nodeName) {
-            this.arrSelect.splice(ind,1)
-          }
-        })
-      } else {
-        this.$set(item,'Active',true)
-        this.arrSelect.push({'nodeName':item.nodeName,'active':item.Active})
+    // 选中
+    btnclick(item) {
+      if(this.handIndex == 0){
+      
+        this.userFea = item.mainType;
+
+         if(item.Active){
+          this.$set(item,'Active',false);
+          this.arrSelect.forEach((val,ind)=>{
+            if(val.nodeName === item.nodeName){
+              this.arrSelect.splice(ind,1)
+            }
+          })
+        }else{
+          this.$set(item,'Active',true);
+          this.arrSelect.push(item)
+        }
+      
+      }else if (this.handIndex == 1){
+        
+        this.itemFea = item.mainType;
+      
+      }else  if (this.handIndex == 2){
+        
+        this.chaFea = item.mainType;
+        console.log(item)
+        if(item.Active){
+          this.$set(item,'Active',false);
+          this.itemArr.forEach((val,ind)=>{
+            if(val.nodeName === item.nodeName){
+              this.itemArr.splice(ind,1)
+            }
+          })
+        }else{
+          this.$set(item,'Active',true);
+          this.itemArr.push(item)
+          // this.itemArr.push({'nodeName':item.nodeName,'Active':item.Active})
+        }     
       }
     },
     // radio
-    handleClick(e) {
-      this.handIndex = e.index
-      this.getLocalData()
+    async handleClick(e) {
+      this.handIndex = e.index;
+      this.init(this.featureList)
     },
+    // dialog
     async struClick() {
-      this.dialogVisible = true
+      this.dialogVisible = true;
+      this.featureQuery()
     },
+    async featureQuery() {
+      let res = await getSelect()
+      if(!res){
+        return 
+      }
+
+      this.ruleData = res.data.data;
+      let arr = res.data.data;
+      arr.map((val)=>{
+        console.log(val,"val")
+        val.tables.map((item)=>{
+          this.ruleNext.push(item)
+          item.pks.map((v)=>{
+            this.keyData.push(v);
+          })
+        })
+      })
+      // debugger
+      console.log(this.ruleNext);
+    },
+
+    changeNext(e) {
+      console.log(e)
+      // this.ruleData.forEach((item)=>{
+      //   item.tables.forEach((val)=>{
+      //     this.ruleNext = val;
+      //     console.log(val)
+      //   })
+        
+      // })
+    },
+    changeMo(e) {
+      console.log(e)
+      // this.ruleNext.forEach((item)=>{
+      //   item.pks.forEach((val)=>{
+      //     this.keyData = val.pks;
+      //     console.log(val.pks)
+      //   })
+      // })
+    },
+
+    // bclose
     handleClose() {
-      this.dialogVisible = false
+      this.dialogVisible = false;
     },
+    // router
     previous() {
       this.$router.push({path: '/model/config'})
     },
@@ -256,55 +344,54 @@ export default {
 }
 </script>
 
-<style scoped>
-.classColor {
-  color: #0486fe;
-}
-
-.boxtop {
+<style lang="postcss">
+.feature {
+  & .boxtop {
     width: 1040px;
     height:491px;
     position: relative;
     background: #e8eaf4;
     margin: 0 auto;
-  }
-.posbtn {
+    & .posbtn {
       position: absolute;
       top: 0px;
       right: 0;
       z-index: 100;
-    }
- .search {
+      & .search {
         width: 200px;
         padding-right: 80px;
       }
- .span {
+      & .span {
         font-size:14px;
         color:#0486fe;
         line-height: 40px;
         height: 40px;
         padding-right: 25px;
       }
-.tabsBox {
+    }
+    & .tabsBox {
       padding: 0px 0 0 20px;
     }
- .boxLeft {
+    & .boxLeft {
       width: 126px;
       height: 386px;
       background: #fff;
       border-radius: 4px;
       float: left;
       overflow-y: auto;
-    }
-.el-card__body {
+      & .classColor {
+        color: #0486fe;
+      }
+      & .el-card__body {
         padding: 10px 15px;
       }
- .text {
+      & .text {
         padding: 10px 0;
         font-size: 14px;
         cursor: pointer;
       }
-.boxCenter{
+    }
+    & .boxCenter{
       background: #fff;
       border-radius: 4px;
       float: left;
@@ -312,24 +399,22 @@ export default {
       height: 386px;
       margin-left: 10px;
       overflow-y: scroll;
-    }
-.el-card__body {
+      & .el-card__body {
         padding: 10px 15px;
       }
- .text {
+      & .text {
         padding: 10px 0;
         font-size: 14px;
         cursor: pointer;
       }
- .textFor {
+      & .textFor {
         font-size: 14px;
         clear: both;
         width: 90%;
-      }
-.textFor p {
+        & p {
           padding-bottom: 20px;
         }
-.colorbtn {
+        & .colorbtn {
           float: left;
           margin-right:15px;
           margin-bottom: 20px;
@@ -342,7 +427,7 @@ export default {
           padding: 8px 16px;
           cursor: pointer;
         }
- .textbtn{
+        & .textbtn{
           float: left;
           margin-right:15px;
           margin-bottom: 20px;
@@ -355,63 +440,68 @@ export default {
           padding: 8px 16px;
           cursor: pointer;
         }
- .boxRight {
+        
+      }
+    }
+    & .boxRight {
       background: #fff;
       border-radius: 4px;
       float: left;
       width: 207px;
       height: 388px;
       margin-left: 15px;
-    }
-.el-card__body {
+      & .el-card__body {
         padding: 10px 15px;
       }
-.numTitle {
+      & .numTitle {
         font-size:12px;
         color:#434649;
         text-align:left;
         height: 30px;
-      }
-.numTitle p{
+        & p{
           float: left;
           padding: 10px 15px;
         }
-.numTitle b {
+        & b {
           font-weight: normal;
           color:#1890FF;
         }
-.rightList {
+      }
+      & .rightList {
         background:#f0f2f5;
         width:197px;
         height:346px;
         margin: 0 5px;
         overflow-y: scroll;
-      
-      }
-.selectList {
+        & .selectList {
           padding:10px 0 0 12px;
           overflow: hidden;
-        }
-.selectList p {
+          & p {
             font-size:12px;
             color:#9b9b9b;
           }
-.selebtn {
-  margin: 10px 0 0 0;
-  font-size: 12px;
-  float: left;
-  margin-right:15px;
-  background: #1890FF;
-  color: #fff;
-  border-radius: 4px;
-  text-align: center;
-  padding: 6px 10px;
+          & .selebtn {
+            margin: 10px 0 0 0;
+            font-size: 12px;
+            float: left;
+            margin-right:15px;
+            background: #1890FF;
+            color: #fff;
+            border-radius: 4px;
+            text-align: center;
+            padding: 6px 10px;
+          }
+        }
+      }
+    }
+  }
+  & .next{
+    width: 1040px;
+    text-align: right;
+    margin: 20px auto;
+  }
 }
-.next{
-  width: 1040px;
-  text-align: right;
-  margin: 20px auto;
-}
+
 .el-scrollbar__wrap {
   overflow-x: hidden;
 }
@@ -431,11 +521,14 @@ export default {
 .association{
   text-align: center;
   margin-bottom: 25px;
-}
-.ruleDesc {
+  & .ruleDesc {
     display: inline-block;
     font-size:12px;
     color:#0486fe;
     margin-left:21px;
   }
+}
+.textFor p{
+  text-align: left;
+}
 </style>
