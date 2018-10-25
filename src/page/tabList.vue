@@ -171,12 +171,12 @@ export default {
           desc: ''
       },
       labelPosition: 'top',
-      featureList:[], // tab数组
+      featureList:[],
       featureList1:[],
-      childList:[],  // 子
-      grandList:[], // 子
-      arrSelect:[], // 点击子
-      itemArr:[], // item 子
+      childList:[],
+      grandList:[],
+      arrSelect:[],
+      itemArr:[],
       titleList:[
         {
           "nodeName":'user特征'
