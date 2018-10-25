@@ -151,8 +151,8 @@ export default {
     return {
       activeName: 'user标题',
       input:'',
-      resource:'1', // radio
-      dialogVisible:false, // dialog
+      resource:'1',
+      dialogVisible:false,
       value:null,
       formTop:{
         featureType:'',
@@ -311,22 +311,9 @@ export default {
 
     changeNext(e) {
       console.log(e)
-      // this.ruleData.forEach((item)=>{
-      //   item.tables.forEach((val)=>{
-      //     this.ruleNext = val;
-      //     console.log(val)
-      //   })
-        
-      // })
     },
     changeMo(e) {
       console.log(e)
-      // this.ruleNext.forEach((item)=>{
-      //   item.pks.forEach((val)=>{
-      //     this.keyData = val.pks;
-      //     console.log(val.pks)
-      //   })
-      // })
     },
 
     // bclose
