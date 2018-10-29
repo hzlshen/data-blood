@@ -192,15 +192,12 @@ export default {
       userFea:'',
       itemFea:'',
       chaFea:'',
-      // hasError:true
-      // dialog
       ruleData:[],
       ruleNext:[],
       keyData:[]
     }
   },
   created() {
-    // this.featureUrl()
     this.getLocalData()
   },
   mounted () {
@@ -217,8 +214,6 @@ export default {
             item.children.map((v)=>{
               v.children.map((lower)=>{
                 if(i.nodeName  == lower.nodeName){
-                  console.log(lower,"33333")
-                  
                   lower.Active = true;
                 }
               })
@@ -299,7 +294,6 @@ export default {
         }else{
           this.$set(item,'Active',true);
           this.itemArr.push(item)
-          // this.itemArr.push({'nodeName':item.nodeName,'Active':item.Active})
         }     
       }
     },
@@ -330,7 +324,6 @@ export default {
           })
         })
       })
-      // debugger
       console.log(this.ruleNext);
     },
 
