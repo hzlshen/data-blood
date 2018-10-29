@@ -16,3 +16,10 @@ export const getSelect = () => fetch({//lookOption是你要调用接口的名字
   params:{
   }
 });
+export const edit = () => fetch({//lookOption是你要调用接口的名字，issuer,userId是传进来的参数
+  //api.getData 引用url.js里面的数据
+  url: api.ctData,
+  method: 'get',//请求方法
+  params:{
+  }
+});

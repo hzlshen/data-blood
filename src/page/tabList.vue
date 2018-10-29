@@ -144,7 +144,7 @@
 </template>
 
 <script>
-import { getJsonAjax,getSelect } from '../axios/api.js'
+import { getJsonAjax,getSelect,edit } from '../axios/api.js'
 export default {
   name: 'feature',
   data() {
@@ -206,6 +206,30 @@ export default {
   mounted () {
   },
   methods: {
+    async edit(){
+      let res = await edit();
+      let data = res.data.data.extendParamsJson.feature;
+
+      this.arrSelect = data.user.userData[0];
+       this.arrSelect.map((i)=>{
+        this.featureList.data.map((val)=>{
+          val.children.map((item)=>{
+            item.children.map((v)=>{
+              v.children.map((lower)=>{
+                if(i.nodeName  == lower.nodeName){
+                  console.log(lower,"33333")
+                  
+                  lower.Active = true;
+                }
+              })
+            })
+          })
+        })
+      })
+
+      console.log(this.featureList,"22222")
+
+    },
     async getLocalData () {
       try {
         let res = await getJsonAjax()
@@ -215,7 +239,8 @@ export default {
 
         this.featureList1 = res.data;
         this.featureList = res
-        this.init(res)
+        await this.init(res)
+        this.edit()
       } catch (error) {
         console.log("错误")
       }

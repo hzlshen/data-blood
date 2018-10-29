@@ -1,0 +1,109 @@
+{
+  "ret_code": 0,
+  "msg": "",
+  "success": true,
+  "data": 
+  {
+  "extendParamsJson": 
+  {
+  "algParams": 
+  {
+  "splitRatio": "0.5",
+  "moreAlgoParameter": "888",
+  "sampleFeatureFilter": "60",
+  "isSplitSample": "0",
+  "algType": "Liblinear",
+  "negSubSampleRatio": "1.0",
+  "options": " -s 0 -B 1"
+  },
+  "resParams": 
+  {
+  "region": "43333",
+  "isComplete": 1,
+  "tmType": "4",
+  "intervalTip": "1",
+  "numExecutors": "10",
+  "sparkConf": "",
+  "executorCore": "3",
+  "tmSetting": "0 10 * * *",
+  "dirverMemory": "4",
+  "executorMemory": "7"
+  },
+  "feature": 
+  {
+  "item": 
+  {
+  "itemData": 
+  [
+  [
+  {
+  "Active": true,
+  "nodeId": "373976326",
+  "level": 0,
+  "nodeName": "app_tag_v3_level_3",
+  "children": [ ],
+  "mainType": "item特征",
+  "nodeType": "node"
+  }
+  ]
+  ],
+  "itemFea": "item特征"
+  },
+  "context": 
+  {
+  "contextData": 
+  [
+  [ ]
+  ],
+  "chaFea": ""
+  },
+  "user": 
+  {
+  "userFea": "user特征",
+  "userData": 
+  [
+  [
+  {
+  "Active": true,
+  "nodeId": "303632750",
+  "parentNodeId": "5",
+  "level": 3,
+  "nodeName": "imei_gender",
+  "children": [ ],
+  "mainType": "user特征",
+  "nodeType": "feature"
+  },
+  {
+  "Active": true,
+  "nodeId": "465758168",
+  "parentNodeId": "5",
+  "level": 3,
+  "nodeName": "imei_intv_age",
+  "children": [ ],
+  "mainType": "user特征",
+  "nodeType": "feature"
+  }
+  ]
+  ]
+  },
+  "cross": 
+  {
+  "crossData": 
+  [
+  [ ]
+  ],
+  "conFea": ""
+  }
+  },
+  "sample": 
+  {
+  "cycle": "10天",
+  "dbName": "default",
+  "tableName": "t_ed_bigdata_mtt_stronginterest_10004_sample_1nd",
+  "dataId": 7720,
+  "resId": 10
+  }
+  }
+  }
+  
+  }  
