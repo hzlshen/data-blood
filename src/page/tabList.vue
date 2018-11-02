@@ -12,7 +12,7 @@
           </el-input>
           <span class="span">构建新特征</span>
           <span class="span">特征自动分析</span>
-          <el-radio style="margin-right:20px;" v-model="resource" label="线上品牌商赞助"></el-radio>
+          <!-- <el-radio style="margin-right:20px;" v-model="resource" label="线上品牌商赞助"></el-radio> -->
         </div>
       <el-tabs class="tabsBox" v-model="activeName" @tab-click="handleClick">
         <el-tab-pane v-for="list in featureList1" :key="list.nodeName" :label="list.nodeName" :name="list.nodeName">
@@ -20,7 +20,7 @@
             <div v-for="(child,index) in list.children" :class="{classColor: index == ind}" :key="index" ref="page" @click="clickList(child,index)" class="text">
               {{child.nodeName}}
             </div>
-            <p class="strutext" v-if="handIndex == 2" @click="struClick">构造新交叉特征</p>
+            <p class="strutext" v-if="handIndex == 0" @click="struClick">构造新交叉特征</p>
           </el-card>
           <el-card class="boxCenter">
             <div class="textFor" v-show="handIndex == 0 || handIndex == 1" v-for="grand in childList" :key="grand.nodeName">
