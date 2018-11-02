@@ -328,10 +328,8 @@ export default {
     },
 
     changeNext(e) {
-      this.ruleData.map((val)=>{
-        console.log(val)
-      })
-      console.log(e)
+      let arr = this.ruleData.filter(item=>item.key == 'user')
+      this.ruleNext =arr;
     },
     changeMo(e) {
       console.log(e)
