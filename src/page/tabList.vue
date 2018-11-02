@@ -315,19 +315,22 @@ export default {
 
       this.ruleData = res.data.data;
       let arr = res.data.data;
-      arr.map((val)=>{
-        console.log(val,"val")
-        val.tables.map((item)=>{
-          this.ruleNext.push(item)
-          item.pks.map((v)=>{
-            this.keyData.push(v);
-          })
-        })
-      })
+      // arr.map((val)=>{
+      //   console.log(val,"val")
+      //   val.tables.map((item)=>{
+      //     this.ruleNext.push(item)
+      //     item.pks.map((v)=>{
+      //       this.keyData.push(v);
+      //     })
+      //   })
+      // })
       console.log(this.ruleNext);
     },
 
     changeNext(e) {
+      this.ruleData.map((val)=>{
+        console.log(val)
+      })
       console.log(e)
     },
     changeMo(e) {
