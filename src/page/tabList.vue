@@ -12,7 +12,6 @@
           </el-input>
           <span class="span">构建新特征</span>
           <span class="span">特征自动分析</span>
-          <!-- <el-radio style="margin-right:20px;" v-model="resource" label="线上品牌商赞助"></el-radio> -->
         </div>
       <el-tabs class="tabsBox" v-model="activeName" @tab-click="handleClick">
         <el-tab-pane v-for="list in featureList1" :key="list.nodeName" :label="list.nodeName" :name="list.nodeName">
@@ -315,16 +314,6 @@ export default {
 
       this.ruleData = res.data.data;
       let arr = res.data.data;
-      // arr.map((val)=>{
-      //   console.log(val,"val")
-      //   val.tables.map((item)=>{
-      //     this.ruleNext.push(item)
-      //     item.pks.map((v)=>{
-      //       this.keyData.push(v);
-      //     })
-      //   })
-      // })
-      console.log(this.ruleNext);
     },
 
     changeNext(e) {
