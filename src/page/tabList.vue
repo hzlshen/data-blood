@@ -240,6 +240,7 @@ export default {
       }
     },
     init (res) {
+      // 初始化点击
       if(this.handIndex == '0'){
         this.shuaData = res.data[0].children[0]
         this.clickList(res.data[0].children[0])
