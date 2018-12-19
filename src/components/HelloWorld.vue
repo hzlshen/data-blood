@@ -1,111 +1,71 @@
 <template>
-  <div id="labelManage">
-    <div id="main">
-        <div class="flowchart-demo" id="flowchart-demo">
-            <div class="window" id="flowchartWindow1">一
-            </div>
-            <div class="window" id="flowchartWindow2">第一
-            </div>
-            <div class="window" id="flowchartWindow3">第二
-            </div>
-            <div class="window" id="flowchartWindow4">第三
-            </div>
-        </div>
-    </div>
+ <div>
+      <!-- bidirectional data binding（双向数据绑定） -->
+  <codemirror v-model="code" :options="cmOptions"></codemirror>
 
-  </div>
+  <!-- or to manually control the datasynchronization（或者手动控制数据流，需要像这样手动监听changed事件） -->
+ </div>
+
+
 </template>
 
 <script>
-import jsPlumb from 'jsplumb'
-
+ // language
+  import 'codemirror/mode/sql/sql.js'
+// theme css
+import 'codemirror/theme/solarized.css'
+// more codemirror resources
+// import 'codemirror/some-resource...'
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  data () {
+    return {
+      code: `
+-- SQL Mode for CodeMirror
+SELECT SQL_NO_CACHE DISTINCT
+    @var1 AS \`val1\`, @'val2', @global.'sql_mode',
+    1.1 AS \`float_val\`, .14 AS \`another_float\`, 0.09e3 AS \`int_with_esp\`,
+    0xFA5 AS \`hex\`, x'fa5' AS \`hex2\`, 0b101 AS \`bin\`, b'101' AS \`bin2\`,
+    DATE '1994-01-01' AS \`sql_date\`, { T "1994-01-01" } AS \`odbc_date\`,
+    'my string', _utf8'your string', N'her string',
+        TRUE, FALSE, UNKNOWN
+  FROM DUAL
+  -- space needed after '--'
+  # 1 line comment
+  /* multiline
+  comment! */
+  LIMIT 1 OFFSET 0;
+`,
+      cmOptions: {
+        // codemirror options
+        tabSize: 4,
+        mode: 'text/x-mysql',
+        theme: 'solarized',
+        lineNumbers: true,
+        line: true,
+        // more codemirror options, 更多 codemirror 的高级配置...
+      }
+    }
   },
-  mounted () {
-    jsPlumb.ready(function() {
-          var j = jsPlumb.getInstance({
-            DragOptions: { cursor: 'pointer', zIndex: 2000 },
-            PaintStyle: { stroke: 'red', strokeWidth: 3 },  //配置自己拖拽小点的时候连接线的默认样式
-            Endpoint: ["Dot", {radius: 5}], //这个是控制连线终端那个小点的半径
-            // EndpointStyle : { fill : "red" }, //这个是控制连线终端那个小点的样式
-            // EndpointHoverStyle  : { fill : "blue" }, //这个是控制连线终端那个小点的样式
-            Connector: ["Flowchart",{curviness:70}],
-            ConnectionOverlays: [
-                [ "Arrow", { location: 1 } ],
-                [ "Label", {
-                    location: 0.5,
-                    label: "hehe",
-                    id: "label",
-                    cssClass: "aLabel"
-                }]
-            ],
-            
-            Container:"flowchart-demo"
-          });
-
-          j.draggable($('.window'));
-          j.addEndpoint('flowchartWindow1',{uuid:1 , anchor: "TopCenter",  isSource:true});
-          j.addEndpoint('flowchartWindow2',{uuid:2 ,anchor:'Right', isTarget:true});
-          j.addEndpoint('flowchartWindow3',{anthors:'Right', isTarget:true});
-          j.connect({
-            uuids:[1,2],  //根据uuid进行连接
-            paintStyle: { stroke: 'red', strokeWidth: 3 },  //线的样式
-            endpointStyle: { fill: 'blue', outlineStroke: 'darkgray', outlineWidth: 2 },//点的样式
-            overlays: [ ['Arrow', { width: 12, length: 12, location: 0.5 }] ]   //覆盖物 箭头 及 样式
-          })
-
-        });
-
-      
+  methods: {
+    onCmReady(cm) {
+      console.log('the editor is readied!', cm)
+    },
+    onCmFocus(cm) {
+      console.log('the editor is focus!', cm)
+    },
+    onCmCodeChange(newCode) {
+      console.log('this is new code', newCode)
+      this.code = newCode
+    }
+  },
+  computed: {
+    codemirror() {
+      return this.$refs.myCm.codemirror
+    }
+  },
+  mounted() {
+    console.log('this is current codemirror object', this.codemirror)
+    // you can use this.codemirror to do something...
   }
 }
 </script>
-
-<style scoped>
-.flowchart-demo {
-    width: 800px;
-    height: 600px;
-    border: 1px solid #000;
-    position: relative;
-}
-.flowchart-demo .window {
-    border: 1px solid #346789;
-    box-shadow: 2px 2px 19px #aaa;
-    -o-box-shadow: 2px 2px 19px #aaa;
-    -webkit-box-shadow: 2px 2px 19px #aaa;
-    -moz-box-shadow: 2px 2px 19px #aaa;
-    -moz-border-radius: 0.5em;
-    border-radius: 0.5em;
-    opacity: 0.8;
-    filter: alpha(opacity=80);
-    text-align: center;
-    position: absolute;
-    background-color: #eeeeef;
-    color: black;
-    font-family: helvetica;
-    font-size: 0.9em;
-    line-height: 60px;
-    width: 60px;
-    height: 60px;
-}
-.flowchart-demo .window:hover {
-    box-shadow: 2px 2px 19px #444;
-    -o-box-shadow: 2px 2px 19px #444;
-    -webkit-box-shadow: 2px 2px 19px #444;
-    -moz-box-shadow: 2px 2px 19px #444;
-    opacity: 0.6;
-    filter: alpha(opacity=60);
-}
-.flowchart-demo .active {
-    border: 1px dotted green;
-}
-.flowchart-demo .hover {
-    border: 1px dotted red;
-}
-p{
-  display: flex;
-}
-</style>
