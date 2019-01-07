@@ -322,7 +322,6 @@ export default {
       this.ruleNext =arr;
     },
     changeMo(e) {
-      console.log(e)
     },
 
     // bclose
