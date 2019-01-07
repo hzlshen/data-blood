@@ -47,21 +47,10 @@ SELECT SQL_NO_CACHE DISTINCT
     }
   },
   methods: {
-    onCmReady(cm) {
-      console.log('the editor is readied!', cm)
-    },
-    onCmFocus(cm) {
-      console.log('the editor is focus!', cm)
-    },
-    onCmCodeChange(newCode) {
-      console.log('this is new code', newCode)
-      this.code = newCode
-    }
+   
   },
   computed: {
-    codemirror() {
-      return this.$refs.myCm.codemirror
-    }
+   
   },
   mounted() {
     console.log('this is current codemirror object', this.codemirror)
