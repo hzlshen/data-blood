@@ -221,7 +221,7 @@ export default {
         })
       })
 
-      console.log(this.featureList,"22222")
+      // console.log(this.featureList,"22222")
 
     },
     async getLocalData () {
@@ -236,7 +236,7 @@ export default {
         await this.init(res)
         this.edit()
       } catch (error) {
-        console.log("错误")
+        // console.log("错误")
       }
     },
     init (res) {
@@ -283,7 +283,7 @@ export default {
       }else  if (this.handIndex == 2){
         
         this.chaFea = item.mainType;
-        console.log(item)
+        // console.log(item)
         if(item.Active){
           this.$set(item,'Active',false);
           this.itemArr.forEach((val,ind)=>{
@@ -314,14 +314,14 @@ export default {
       }
 
       this.ruleData = res.data.data;
-      let arr = res.data.data;
+      // let arr = res.data.data;
     },
 
-    changeNext(e) {
+    changeNext() {
       let arr = this.ruleData.filter(item=>item.key == 'user')
       this.ruleNext =arr;
     },
-    changeMo(e) {
+    changeMo() {
     },
 
     // bclose

@@ -53,7 +53,7 @@ SELECT SQL_NO_CACHE DISTINCT
    
   },
   mounted() {
-    console.log('this is current codemirror object', this.codemirror)
+    // console.log('this is current codemirror object', this.codemirror)
     // you can use this.codemirror to do something...
   }
 }
