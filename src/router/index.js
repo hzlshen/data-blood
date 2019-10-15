@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWord from '../components/HelloWorld'
+import HelloWord from '../components/index'
 import TabList from '../page/tabList.vue'
 
 
